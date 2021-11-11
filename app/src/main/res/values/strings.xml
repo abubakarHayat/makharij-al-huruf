@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Makhrij Al-Huruf</string>
+    <string name="makhrij_al_huruf">Makhrij Al-Huruf</string>
+    <string name="abubakar_hayat">Abubakar Hayat</string>
+    <string name="bcsf18a536">BCSF18A536</string>
+    <string name="go_to_repo">Go to Repo</string>
+    <string name="take_exam">Take Exam</string>
+    <string name="practice">Practice</string>
+    <string name="todo">TODO</string>
+</resources>
