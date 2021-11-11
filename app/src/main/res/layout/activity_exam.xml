@@ -6,11 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".ExamActivity">
 
+    <TextView
+        android:id="@+id/textViewQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroupOptions"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <RadioGroup
         android:id="@+id/radioGroupOptions"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingLeft="8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,42 +29,26 @@
             android:id="@+id/radioOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="One"
             android:onClick="checkButton"/>
 
         <RadioButton
             android:id="@+id/radioTwo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Two"
             android:onClick="checkButton"/>
 
         <RadioButton
             android:id="@+id/radioThree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Three"
             android:onClick="checkButton"/>
 
         <RadioButton
             android:id="@+id/radioFour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Four"
             android:onClick="checkButton"/>
     </RadioGroup>
-
-    <TextView
-        android:id="@+id/textViewQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:padding="8"
-        android:text="TextView"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroupOptions"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnNextQs"

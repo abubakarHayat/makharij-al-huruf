@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 public class ExamActivity extends AppCompatActivity {
 
     int counter =0;
+    int score = 0;
     RadioGroup radioGroup;
     RadioButton radioBtn;
     TextView txtViewQs;
@@ -47,45 +49,52 @@ public class ExamActivity extends AppCompatActivity {
         for(int i =0;i<radioGroup.getChildCount();i++){
             ((RadioButton)radioGroup.getChildAt(i)).setText(getOptions(i));
         }
-
-    }
-    public void onClickNextQs(){
-        nextQuestion();
-        txtViewQs = findViewById(R.id.textViewQuestion);
-        //setting question in text view
-        txtViewQs.setText(getQuestion(counter));
-        //getting radio group
-        radioGroup = findViewById(R.id.radioGroupOptions);
-        //setting each radio button text
-        for(int i =0;i<radioGroup.getChildCount();i++){
-            ((RadioButton)radioGroup.getChildAt(i)).setText(getOptions(i));
-        }
-        Button btnNextQs = findViewById(R.id.btnNextQs);
-        btnNextQs.setOnClickListener(new View.OnClickListener() {
+        Button btnNextQ = findViewById(R.id.btnNextQs);
+        btnNextQ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nextQuestion();
-                txtViewQs = findViewById(R.id.textViewQuestion);
-                //setting question in text view
-                txtViewQs.setText(getQuestion(counter));
-                //getting radio group
-                radioGroup = findViewById(R.id.radioGroupOptions);
-                //setting each radio button text
-                for(int i =0;i<radioGroup.getChildCount();i++){
-                    ((RadioButton)radioGroup.getChildAt(i)).setText(getOptions(i));
+                if(counter <= qsArr.length) {
+                    radioGroup.clearCheck();
+                    //Log.d("ExamActivity","Counter: "+ counter);
+                    counter = counter + 1;
+                    //Log.d("ExamActivity","Counter: "+ counter);
+                    txtViewQs = findViewById(R.id.textViewQuestion);
+
+                    //setting question in text view
+                    txtViewQs.setText(getQuestion(counter));
+                    //getting radio group
+                    radioGroup = findViewById(R.id.radioGroupOptions);
+                    //setting each radio button text
+                    for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                        radioBtn = (RadioButton) radioGroup.getChildAt(i);
+                        radioBtn.setText(getOptions(i));
+                        radioBtn.setTextColor(Color.BLACK);
+                        radioBtn.setEnabled(true);
+                    }
+                }else{
+
                 }
 
             }
         });
+
     }
+
     public void checkButton(View view){
         int radioId = radioGroup.getCheckedRadioButtonId();
         radioBtn = findViewById(radioId);
         String strAns = radioBtn.getText().toString();
         if (strAns == getCorrectAns(counter)){
             radioBtn.setTextColor(Color.GREEN);
+            score+=1;
         }else{
             radioBtn.setTextColor(Color.RED);
+        }
+        for(int i =0;i<radioGroup.getChildCount();i++){
+            radioBtn = (RadioButton)radioGroup.getChildAt(i);
+            if(!radioBtn.isChecked()){
+                radioBtn.setEnabled(false);
+            }
         }
     }
 
