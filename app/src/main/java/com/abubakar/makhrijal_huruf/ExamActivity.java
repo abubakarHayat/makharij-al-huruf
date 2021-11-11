@@ -10,7 +10,7 @@ import android.widget.TextView;
 public class ExamActivity extends AppCompatActivity {
 
     RadioGroup radioGroup;
-    RadioButton radiobtn;
+    RadioButton radioBtn;
     TextView txtViewQs;
     String[][] qsArr = {
             {"Base of Tongue which is near Uvula touching the mouth roof","ق","ج","ک","ش"},
@@ -22,7 +22,7 @@ public class ExamActivity extends AppCompatActivity {
             {"Tip of the tongue comes between the front top and bottom teeth","ظ ذ ث","ص ز س","ج ن","ج ش ی"},
             {"Bring the vibration to the nose while pronouncing the ending sound of:","ت د","م ن","ز س","ظ ذ"},
             {"Tip of the two upper jaw teeth touches the inner part of the lower lip","ظ","د","س","ف"},
-            {"Inner part of the both lips touch each other","ی","ظ","ض" ,"ب"}
+            {"Inner part of the both lips touch each other","ی","ظ","ض" ,"ب"},
             {"Outer part of both lips touch each other:", "ی","ث","م","ض"},
             {"Rounding both lips and not closing the mouth:","ث","م","و","ب"},
             {"End of throat:","أ ہ","م","و","ب"},
