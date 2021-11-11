@@ -49,8 +49,8 @@
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="@+id/textViewRollNo"
         app:layout_constraintTop_toBottomOf="@+id/textViewRollNo"
-        app:srcCompat="@drawable/sampleimage"
-        tools:srcCompat="@drawable/sampleimage" />
+        app:srcCompat="@drawable/githubss"
+        tools:srcCompat="@drawable/githubss" />
 
     <Button
         android:id="@+id/btnGotoRepo"

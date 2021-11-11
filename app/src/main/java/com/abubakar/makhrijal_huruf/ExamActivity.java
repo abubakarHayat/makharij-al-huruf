@@ -36,7 +36,6 @@ public class ExamActivity extends AppCompatActivity {
             {"Middle of throat","أ ہ","غ خ","ع ح" ,"م و"},
             {"Start of throat","أ ہ","غ خ","ع ح","م و"}};
     String[] ans = {"ق","ک","ج ش ی","ن","ت د ط","ظ ذ ث","ص ز س","م ن","ف","ب","م","و","أ ہ","ع ح","غ خ"};
-    TextView txtVQs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,11 +55,11 @@ public class ExamActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(counter == (qsArr.length-1)) {
-                    btnNextQ.setText("Finish Test");
+                    btnNextQ.setText("Finish Exam");
                     counter = counter +1;
                 }else if(counter == qsArr.length){
                     Intent finishExamIntent = new Intent(ExamActivity.this,FinishExamActivity.class);
-                    finishExamIntent.putExtra("score",Integer.toString(score)+ " out of " + Integer.toString(qsArr.length));
+                    finishExamIntent.putExtra("score",+score+ " out of " + qsArr.length);
                     startActivity(finishExamIntent);
                 }else{
                     radioGroup.clearCheck();
@@ -91,7 +90,7 @@ public class ExamActivity extends AppCompatActivity {
         int radioId = radioGroup.getCheckedRadioButtonId();
         radioBtn = findViewById(radioId);
         String strAns = radioBtn.getText().toString();
-        if (strAns == getCorrectAns(counter)){
+        if (strAns.equals(getCorrectAns(counter))){
             radioBtn.setTextColor(Color.GREEN);
             score+=1;
         }else{
@@ -113,8 +112,5 @@ public class ExamActivity extends AppCompatActivity {
     }
     protected String getCorrectAns(int i ){
         return ans[i];
-    }
-    protected void nextQuestion(){
-         counter++;
     }
 }

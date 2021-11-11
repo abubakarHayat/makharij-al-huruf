@@ -7,11 +7,10 @@
     tools:context=".PracticeActivity">
 
     <TextView
-        android:id="@+id/textViewQuestionPractice"
+        android:id="@+id/txtVQsPractice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:text="Something"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/radioGroupOptionsPractice"
@@ -76,7 +75,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="TextView"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

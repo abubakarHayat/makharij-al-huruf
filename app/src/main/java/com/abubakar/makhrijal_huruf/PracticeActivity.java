@@ -2,7 +2,6 @@ package com.abubakar.makhrijal_huruf;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -11,14 +10,18 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.util.Random;
+
 public class PracticeActivity extends AppCompatActivity {
 
-    int counter =0;
-    int score = 0;
-    RadioGroup radioGroup;
-    RadioButton radioBtn;
-    TextView txtViewQs;
-    String[][] qsArr = {
+    int counterPr =0;
+    int scorePr = 0;
+    int randNoPr = 0;
+    RadioGroup radioGroupPractice;
+    RadioButton radioBtnPractice;
+    TextView txtViewQsPractice;
+    TextView txtViewScorePractice;
+    String[][] qsArr1 = {
             {"Base of Tongue which is near Uvula touching the mouth roof","ق","ج","ک","ش"},
             {"Portion of Tongue near its base touching the roof of mouth","ط","ج", "ق","ک"},
             {"Tongue touching the center of the mouth roof","ج ش ی","ض","ش","ل"},
@@ -34,44 +37,47 @@ public class PracticeActivity extends AppCompatActivity {
             {"End of throat:","أ ہ","م","و","ب"},
             {"Middle of throat","أ ہ","غ خ","ع ح" ,"م و"},
             {"Start of throat","أ ہ","غ خ","ع ح","م و"}};
-    String[] ans = {"ق","ک","ج ش ی","ن","ت د ط","ظ ذ ث","ص ز س","م ن","ف","ب","م","و","أ ہ","ع ح","غ خ"};
-    TextView txtVQs;
+    String[] ans1 = {"ق","ک","ج ش ی","ن","ت د ط","ظ ذ ث","ص ز س","م ن","ف","ب","م","و","أ ہ","ع ح","غ خ"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exam);
-        txtViewQs = findViewById(R.id.textViewQuestionPractice);
+        setContentView(R.layout.activity_practice);
+        Random rand = new Random();
+        randNoPr = rand.nextInt(ans1.length);
+
+        txtViewQsPractice = findViewById(R.id.txtVQsPractice);
         //setting question in text view
-        txtViewQs.setText(getQuestion(counter));
+
+        txtViewQsPractice.setText(getQuestion(randNoPr));
         //getting radio group
-        radioGroup = findViewById(R.id.radioGroupOptionsPractice);
+        radioGroupPractice = findViewById(R.id.radioGroupOptionsPractice);
         //setting each radio button text
-        for(int i =0;i<radioGroup.getChildCount();i++){
-            ((RadioButton)radioGroup.getChildAt(i)).setText(getOptions(i));
+        for(int i =0;i<radioGroupPractice.getChildCount();i++){
+            ((RadioButton)radioGroupPractice.getChildAt(i)).setText(getOptions(i));
         }
-        counter = counter +1;
+        counterPr = counterPr +1;
+        txtViewScorePractice = findViewById(R.id.textViewScorePractice);
+        //txtViewScorePractice.setText(String.format("Correct: %s, Wrong: %s", scorePr,counterPr - scorePr -1));
         Button btnNextQ = findViewById(R.id.btnNextQsPractice);
         btnNextQ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                randNoPr = rand.nextInt(ans1.length);
+                radioGroupPractice.clearCheck();
+                counterPr = counterPr + 1;
+                txtViewQsPractice = findViewById(R.id.txtVQsPractice);
 
-                    radioGroup.clearCheck();
-                    //Log.d("ExamActivity","Counter: "+ counter);
-                    counter = counter + 1;
-                    //Log.d("ExamActivity","Counter: "+ counter);
-                    txtViewQs = findViewById(R.id.textViewQuestionPractice);
-
-                    //setting question in text view
-                    txtViewQs.setText(getQuestion(counter));
-                    //getting radio group
-                    radioGroup = findViewById(R.id.radioGroupOptionsPractice);
-                    //setting each radio button text
-                    for (int i = 0; i < radioGroup.getChildCount(); i++) {
-                        radioBtn = (RadioButton) radioGroup.getChildAt(i);
-                        radioBtn.setText(getOptions(i));
-                        radioBtn.setTextColor(Color.BLACK);
-                        radioBtn.setEnabled(true);
-                    }
+                //setting question in text view
+                txtViewQsPractice.setText(getQuestion(randNoPr));
+                //getting radio group
+                radioGroupPractice = findViewById(R.id.radioGroupOptionsPractice);
+                //setting each radio button text
+                for (int i = 0; i < radioGroupPractice.getChildCount(); i++) {
+                    radioBtnPractice = (RadioButton) radioGroupPractice.getChildAt(i);
+                    radioBtnPractice.setText(getOptions(i));
+                    radioBtnPractice.setTextColor(Color.BLACK);
+                    radioBtnPractice.setEnabled(true);
+                }
             }
         });
 
@@ -79,41 +85,39 @@ public class PracticeActivity extends AppCompatActivity {
         btnEndPr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                finish();
             }
         });
 
     }
 
-    public void checkButton(View view){
-        int radioId = radioGroup.getCheckedRadioButtonId();
-        radioBtn = findViewById(radioId);
-        String strAns = radioBtn.getText().toString();
-        if (strAns == getCorrectAns(counter)){
-            radioBtn.setTextColor(Color.GREEN);
-            score+=1;
+    public void checkButtonPractice(View view){
+        int radioId = radioGroupPractice.getCheckedRadioButtonId();
+        radioBtnPractice = findViewById(radioId);
+        String strAns = radioBtnPractice.getText().toString();
+        if (strAns.equals(getCorrectAns(randNoPr))){
+            radioBtnPractice.setTextColor(Color.GREEN);
+            scorePr = scorePr + 1;
         }else{
-            radioBtn.setTextColor(Color.RED);
+            radioBtnPractice.setTextColor(Color.RED);
         }
-        for(int i =0;i<radioGroup.getChildCount();i++){
-            radioBtn = (RadioButton)radioGroup.getChildAt(i);
-            if(!radioBtn.isChecked()){
-                radioBtn.setEnabled(false);
+        counterPr = counterPr + 1;
+        for(int i =0;i<radioGroupPractice.getChildCount();i++){
+            radioBtnPractice = (RadioButton)radioGroupPractice.getChildAt(i);
+            if(!radioBtnPractice.isChecked()){
+                radioBtnPractice.setEnabled(false);
             }
         }
     }
 
     protected String getQuestion(int i ){
-        return qsArr[i][0];
+        return qsArr1[i][0];
     }
     protected String getOptions(int i ){
-        return qsArr[counter][i+1];
+        return qsArr1[randNoPr][i+1];
     }
-    protected String getCorrectAns(int i ){
-        return ans[i];
-    }
-    protected void nextQuestion(){
-        counter++;
+    protected String getCorrectAns(int i ) {
+        return ans1[i];
     }
 
 }
