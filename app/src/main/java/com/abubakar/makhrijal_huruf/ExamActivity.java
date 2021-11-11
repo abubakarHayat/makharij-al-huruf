@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 public class ExamActivity extends AppCompatActivity {
 
+    int counter =0;
     RadioGroup radioGroup;
     RadioButton radioBtn;
     TextView txtViewQs;
@@ -29,10 +30,31 @@ public class ExamActivity extends AppCompatActivity {
             {"Middle of throat","أ ہ","غ خ","ع ح" ,"م و"},
             {"Start of throat","أ ہ","غ خ","ع ح","م و"}};
     String[] ans = {"ق","ک","ج ش ی","ن","ت د ط","ظ ذ ث","ص ز س","م ن","ف","ب","م","و","أ ہ","ع ح","غ خ"};
+    TextView txtVQs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam);
+        txtViewQs = findViewById(R.id.textViewQuestion);
+        //setting question in text view
+        txtViewQs.setText(getQuestion(counter));
+        //getting radio group
+        radioGroup = findViewById(R.id.radioGroupOptions);
+        //setting each radio button text
+        for(int i =0;i<radioGroup.getChildCount();i++){
+            ((RadioButton)radioGroup.getChildAt(i)).setText(getOptions(i));
+        }
 
+
+
+    }
+    protected String getQuestion(int i ){
+        return qsArr[i][0];
+    }
+    protected String getOptions(int i ){
+        return qsArr[counter][i+1];
+    }
+    protected String getCorrectAns(int i ){
+        return ans[i];
     }
 }
