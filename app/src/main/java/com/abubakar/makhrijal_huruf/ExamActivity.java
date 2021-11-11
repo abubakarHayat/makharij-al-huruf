@@ -50,17 +50,19 @@ public class ExamActivity extends AppCompatActivity {
         for(int i =0;i<radioGroup.getChildCount();i++){
             ((RadioButton)radioGroup.getChildAt(i)).setText(getOptions(i));
         }
+        counter = counter +1;
         Button btnNextQ = findViewById(R.id.btnNextQs);
         btnNextQ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(counter == (qsArr.length-1)) {
                     btnNextQ.setText("Finish Test");
+                    counter = counter +1;
                 }else if(counter == qsArr.length){
                     Intent finishExamIntent = new Intent(ExamActivity.this,FinishExamActivity.class);
-                    finishExamIntent.putExtra("score",score);
+                    finishExamIntent.putExtra("score",Integer.toString(score)+ " out of " + Integer.toString(qsArr.length));
                     startActivity(finishExamIntent);
-                }
+                }else{
                     radioGroup.clearCheck();
                     //Log.d("ExamActivity","Counter: "+ counter);
                     counter = counter + 1;
@@ -78,6 +80,7 @@ public class ExamActivity extends AppCompatActivity {
                         radioBtn.setTextColor(Color.BLACK);
                         radioBtn.setEnabled(true);
                     }
+                }
 
             }
         });
