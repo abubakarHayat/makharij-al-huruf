@@ -28,6 +28,7 @@ public class ExamActivity extends AppCompatActivity {
             {"End of throat:","أ ہ","م","و","ب"},
             {"Middle of throat","أ ہ","غ خ","ع ح" ,"م و"},
             {"Start of throat","أ ہ","غ خ","ع ح","م و"}};
+    String[] ans = {"ق","ک","ج ش ی","ن","ت د ط","ظ ذ ث","ص ز س","م ن","ف","ب","م","و","أ ہ","ع ح","غ خ"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
