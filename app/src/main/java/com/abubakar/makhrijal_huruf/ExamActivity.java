@@ -2,6 +2,7 @@ package com.abubakar.makhrijal_huruf;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -56,7 +57,9 @@ public class ExamActivity extends AppCompatActivity {
                 if(counter == (qsArr.length-1)) {
                     btnNextQ.setText("Finish Test");
                 }else if(counter == qsArr.length){
-
+                    Intent finishExamIntent = new Intent(ExamActivity.this,FinishExamActivity.class);
+                    finishExamIntent.putExtra("score",score);
+                    startActivity(finishExamIntent);
                 }
                     radioGroup.clearCheck();
                     //Log.d("ExamActivity","Counter: "+ counter);
