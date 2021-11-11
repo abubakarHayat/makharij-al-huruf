@@ -53,7 +53,11 @@ public class ExamActivity extends AppCompatActivity {
         btnNextQ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(counter <= qsArr.length) {
+                if(counter == (qsArr.length-1)) {
+                    btnNextQ.setText("Finish Test");
+                }else if(counter == qsArr.length){
+
+                }
                     radioGroup.clearCheck();
                     //Log.d("ExamActivity","Counter: "+ counter);
                     counter = counter + 1;
@@ -71,9 +75,6 @@ public class ExamActivity extends AppCompatActivity {
                         radioBtn.setTextColor(Color.BLACK);
                         radioBtn.setEnabled(true);
                     }
-                }else{
-
-                }
 
             }
         });

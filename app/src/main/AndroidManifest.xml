@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MakhrijAlHuruf">
         <activity
+            android:name=".FinishExamActivity"
+            android:exported="false" />
+        <activity
             android:name=".ExamActivity"
             android:exported="false" />
         <activity
