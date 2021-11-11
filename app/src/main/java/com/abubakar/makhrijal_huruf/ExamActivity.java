@@ -2,7 +2,10 @@ package com.abubakar.makhrijal_huruf;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -45,9 +48,47 @@ public class ExamActivity extends AppCompatActivity {
             ((RadioButton)radioGroup.getChildAt(i)).setText(getOptions(i));
         }
 
-
-
     }
+    public void onClickNextQs(){
+        nextQuestion();
+        txtViewQs = findViewById(R.id.textViewQuestion);
+        //setting question in text view
+        txtViewQs.setText(getQuestion(counter));
+        //getting radio group
+        radioGroup = findViewById(R.id.radioGroupOptions);
+        //setting each radio button text
+        for(int i =0;i<radioGroup.getChildCount();i++){
+            ((RadioButton)radioGroup.getChildAt(i)).setText(getOptions(i));
+        }
+        Button btnNextQs = findViewById(R.id.btnNextQs);
+        btnNextQs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextQuestion();
+                txtViewQs = findViewById(R.id.textViewQuestion);
+                //setting question in text view
+                txtViewQs.setText(getQuestion(counter));
+                //getting radio group
+                radioGroup = findViewById(R.id.radioGroupOptions);
+                //setting each radio button text
+                for(int i =0;i<radioGroup.getChildCount();i++){
+                    ((RadioButton)radioGroup.getChildAt(i)).setText(getOptions(i));
+                }
+
+            }
+        });
+    }
+    public void checkButton(View view){
+        int radioId = radioGroup.getCheckedRadioButtonId();
+        radioBtn = findViewById(radioId);
+        String strAns = radioBtn.getText().toString();
+        if (strAns == getCorrectAns(counter)){
+            radioBtn.setTextColor(Color.GREEN);
+        }else{
+            radioBtn.setTextColor(Color.RED);
+        }
+    }
+
     protected String getQuestion(int i ){
         return qsArr[i][0];
     }
@@ -56,5 +97,8 @@ public class ExamActivity extends AppCompatActivity {
     }
     protected String getCorrectAns(int i ){
         return ans[i];
+    }
+    protected void nextQuestion(){
+         counter++;
     }
 }
