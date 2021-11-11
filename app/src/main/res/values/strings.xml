@@ -9,4 +9,6 @@
     <string name="todo">TODO</string>
     <string name="test_results">Test results</string>
     <string name="share_result">Share Result</string>
+    <string name="next_question">Next Question</string>
+    <string name="end_practice">End Practice</string>
 </resources>
