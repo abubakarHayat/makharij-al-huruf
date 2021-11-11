@@ -75,6 +75,14 @@ public class PracticeActivity extends AppCompatActivity {
             }
         });
 
+        Button btnEndPr = findViewById(R.id.btnEndPractice);
+        btnEndPr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
     }
 
     public void checkButton(View view){
